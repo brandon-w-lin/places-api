@@ -39,13 +39,15 @@ class PlacesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_place
-      @place = Place.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def place_params
-      params.fetch(:place, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_place
+    @place = Place.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def place_params
+    # params.fetch(:place, {})
+    params.require(:place).permit(:name, :address)
+  end
 end
